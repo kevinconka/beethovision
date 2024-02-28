@@ -1,3 +1,7 @@
+# custom
+rach3_s
+data/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
