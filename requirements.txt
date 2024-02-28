@@ -1,0 +1,4 @@
+mediapipe>=0.10.9
+fiftyone>=0.23.4
+tqdm>=4.66
+partitura>=1.4.1
