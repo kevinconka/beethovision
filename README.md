@@ -9,15 +9,63 @@ Markerless Moction Capture in Piano Applications
 ## <div align="center">Documentation</div>
 
 <details open>
-<summary>📤 Import dataset to FiftyOne</summary>
+<summary>📥📤 Download and Import Metadata to FiftyOne</summary>
 
+Download the metadata using `gdown`:
 ```bash
-python3 beethovision/fo_utils/import_dataset.py --dataset-name rach3 --dataset-dir /path/to/dataset --keyboard-bboxes rach3_bounding_boxes.json
+python -c "import gdown; gdown.download('https://drive.google.com/uc?id=1UxbJs-YEuI9rhUygtZf5mtxH5iXOAWX0', 'fiftyone.tgz', quiet=False)"
+```
+
+Assuming you have the following structure or similar:
+```
+rach3_s
+├── rach3_bounding_boxes.json
+├── test   # mp4, midi, flac
+└── train  # mp4, midi, flac
+```
+
+Set up an environment variable with the path to the dataset:
+```bash
+export DATASET_DIR=/path/to/rach3_s
+```
+
+Unzip the metadata:
+```bash
+tar -xvzf fiftyone.tgz -C $DATASET_DIR
+```
+
+Import the metadata to FiftyOne:
+```bash
+fiftyone datasets create --name rach3 -d $DATASET_DIR --type fiftyone.types.FiftyOneDataset
+```
+
+Alternatively, you can run the `fetch_unzip_fiftyone.sh` under `scripts`:
+```console
+$ DATASET_DIR=rach3_s bash scripts/fetch_unzip_fiftyone.sh 
+Downloading...
+From (original): https://drive.google.com/uc?id=1UxbJs-YEuI9rhUygtZf5mtxH5iXOAWX0
+From (redirected): https://drive.google.com/uc?id=1UxbJs-YEuI9rhUygtZf5mtxH5iXOAWX0&confirm=t&uuid=125a5697-528a-4619-bbd4-30cf18fbff49
+To: /Users/kevinserrano/GitHub/JKU-AI/beethovision/fiftyone.tgz
+100%|█████████████████████████████████| 1.68G/1.68G [02:08<00:00, 13.0MB/s]
+x frames.json
+x metadata.json
+x samples.json
+Importing samples...
+ 100% |███████████████████████████████| 293/293 [3.9ms elapsed, 0s remaining, 75.4K samples/s]       
+Importing frames...
+Importing frames...
+ 100% |███████████████████████████████| 2263220/2263220 [57.0s elapsed, 0s remaining, 37.6K samples/s]      
+Dataset 'rach3' created
+```
+
+Launch fiftyone:
+```bash
+fiftyone app launch
 ```
 
 </details>
 
-<details open>
+<details>
 <summary>🏃‍♂️ Run MediaPipe Hand Landmark model</summary>
 
 ```bash
