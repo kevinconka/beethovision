@@ -18,7 +18,7 @@ Download the metadata using `gdown`:
 python -c "import gdown; gdown.download('https://drive.google.com/uc?id=1UxbJs-YEuI9rhUygtZf5mtxH5iXOAWX0', 'fiftyone.tgz', quiet=False)"
 ```
 
-Assuming you have the following structure or similar:
+Assuming you have the following structure:
 ```
 rach3_s
 ├── rach3_bounding_boxes.json
